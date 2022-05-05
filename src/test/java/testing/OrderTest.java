@@ -2,6 +2,7 @@ package testing;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -89,6 +90,7 @@ class OrderTest {
     }
 
     @Test
+    @DisplayName("Nasza nazwa")
     void testIfTwoMealListsAreTheSame() {
         // given
         Meal meal1 = new Meal(20, "Pizza");
