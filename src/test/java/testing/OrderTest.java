@@ -1,5 +1,7 @@
 package testing;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -10,6 +12,18 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
+
+    private Order order;
+
+    @BeforeEach
+    void initializeOrder() {
+        order = new Order();
+    }
+
+    @AfterEach
+    void cleanUp() {
+        order.cancel();
+    }
 
     @Test
     void testAssertArrayEquals() {
@@ -23,9 +37,6 @@ class OrderTest {
 
     @Test
     void mealListShouldBeEmptyAfterCreationOfOrder() {
-        // given
-        Order order = new Order();
-
         // then
         assertThat(order.getMeals(), empty());
         assertThat(order.getMeals().size(), equalTo(0));
@@ -37,7 +48,6 @@ class OrderTest {
     void addingMealToOrderShouldIncreaseOrderSize() {
         // given
         Meal meal = new Meal(20, "Pizza");
-        Order order = new Order();
 
         // when
         order.addMealToOrder(meal);
@@ -52,7 +62,6 @@ class OrderTest {
     @Test
     void removingMealFromOrderShouldDecreaseOrderSize() {
         Meal meal = new Meal(20, "Pizza");
-        Order order = new Order();
 
         // when
         order.addMealToOrder(meal);
@@ -69,7 +78,6 @@ class OrderTest {
         // given
         Meal meal1 = new Meal(20, "Pizza");
         Meal meal2 = new Meal(15, "Burger");
-        Order order = new Order();
 
         // when
         order.addMealToOrder(meal1);
@@ -90,6 +98,6 @@ class OrderTest {
         List<Meal> meals2 = Arrays.asList(meal1, meal2);
 
         // then
-        assertThat(meal1, is(meal2));       // czy zawieraj¹ te same elementy w tej samej kolejnoœci
+        assertThat(meals1, is(meals2));       // czy zawieraj¹ te same elementy w tej samej kolejnoœci
     }
 }
