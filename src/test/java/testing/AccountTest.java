@@ -3,8 +3,9 @@ package testing;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
+//import static org.hamcrest.MatcherAssert.assertThat;
+//import static org.hamcrest.Matchers.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
@@ -16,8 +17,11 @@ class AccountTest {
 
         // then
         assertFalse(newAccount.isActive(), "Some message if false");
-        assertThat(newAccount.isActive(), Matchers.equalTo(false));
-        assertThat(newAccount.isActive(), Matchers.is(false));
+
+//        assertThat(newAccount.isActive(), Matchers.equalTo(false));
+//        assertThat(newAccount.isActive(), Matchers.is(false));
+
+        assertThat(newAccount.isActive()).isFalse();
     }
 
     @Test
@@ -30,6 +34,8 @@ class AccountTest {
 
         // then
         assertTrue(newAccount.isActive());
+
+        assertThat(newAccount.isActive()).isTrue();
     }
 
     @Test
@@ -42,7 +48,10 @@ class AccountTest {
 
         // then
         assertNull(address);
-        assertThat(address, Matchers.nullValue());
+
+//        assertThat(address, Matchers.nullValue());
+
+        assertThat(address).isNull();
     }
 
     @Test
@@ -57,6 +66,9 @@ class AccountTest {
 
         // then
         assertNotNull(defaultAddress);
-        assertThat(defaultAddress, Matchers.is(notNullValue()));
+
+//        assertThat(defaultAddress, Matchers.is(notNullValue()));
+
+        assertThat(defaultAddress).isNotNull();
     }
 }
