@@ -6,6 +6,15 @@ public class Account {
 
     private Address defaultDeliveryAddress;
 
+    public Account(final Address defaultDeliveryAddress) {
+        this.defaultDeliveryAddress = defaultDeliveryAddress;
+        if (defaultDeliveryAddress != null) {
+            activate();
+        } else {
+            this.active = false;
+        }
+    }
+
     public Account() {
         this.active = false;
     }
