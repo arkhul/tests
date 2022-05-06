@@ -9,9 +9,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.BDDMockito.*;
 
 class CartServiceTest {
 
@@ -141,5 +140,48 @@ class CartServiceTest {
 
         // when & then
         assertThrows(IllegalStateException.class, () -> cartService.processCart(cart));
+    }
+
+    @Test
+    void shouldDoNothingWhenProcessCart() {
+        // given
+        Order order = new Order();
+        Cart cart = new Cart();
+        cart.addOrderToCart(order);
+
+        CartHandler cartHandler = mock(CartHandler.class);
+        CartService cartService = new CartService(cartHandler);
+
+        given(cartHandler.canHandleCart(cart)).willReturn(true);
+
+        doNothing().when(cartHandler).sendToPrepare(cart);
+        willDoNothing().given(cartHandler).sendToPrepare(cart); // to samo co linijka wy¿ej
+
+        // when
+        Cart resultCart = cartService.processCart(cart);
+
+        // then
+        then(cartHandler).should().sendToPrepare(cart);
+
+        assertThat(resultCart.getOrders().get(0).getOrderStatus(), equalTo(OrderStatus.PREPARING));
+    }
+
+    @Test
+    void deliveryShouldBeFree() {
+        // given
+        Cart cart = new Cart();
+        cart.addOrderToCart(new Order());
+        cart.addOrderToCart(new Order());
+        cart.addOrderToCart(new Order());
+
+        CartHandler cartHandler = mock(CartHandler.class);
+        given(cartHandler.isDeliveryFree(cart)).willCallRealMethod();   // to samo co ni¿ej
+//        doCallRealMethod().when(cartHandler).isDeliveryFree(cart);
+
+        // when
+        boolean isDeliveryFree = cartHandler.isDeliveryFree(cart);
+
+        // then
+        assertTrue(isDeliveryFree);
     }
 }
