@@ -3,10 +3,17 @@ package testing;
 public class Meal {
 
     private int price;
+    private int quantity;
     private String name;
 
     public Meal(final int price, final String name) {
         this.price = price;
+        this.name = name;
+    }
+
+    public Meal(final int price, final int quantity, final String name) {
+        this.price = price;
+        this.quantity = quantity;
         this.name = name;
     }
 
@@ -27,6 +34,10 @@ public class Meal {
 
     public String getName() {
         return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     @Override
