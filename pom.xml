@@ -53,6 +53,11 @@
             <artifactId>assertj-core</artifactId>
             <version>3.22.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.8.2</version>
+        </dependency>
     </dependencies>
 
     <properties>
