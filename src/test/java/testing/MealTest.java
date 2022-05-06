@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import testing.order.Order;
 //import static org.hamcrest.MatcherAssert.assertThat;
 //import static org.hamcrest.Matchers.sameInstance;
 //import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +20,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MealTest {
@@ -139,6 +139,7 @@ class MealTest {
             DynamicTest dynamicTest = DynamicTest.dynamicTest(name, executable);
             dynamicTests.add(dynamicTest);
         }
+        return dynamicTests;
     }
 
     private int calculatePrice(int price, int quantity) {

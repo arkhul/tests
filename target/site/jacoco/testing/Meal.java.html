@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Meal.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">testing-java</a> &gt; <a href="index.source.html" class="el_package">testing</a> &gt; <span class="el_source">Meal.java</span></div><h1>Meal.java</h1><pre class="source lang-java linenums">package testing;
+
+public class Meal {
+
+    private int price;
+    private int quantity;
+    private String name;
+
+<span class="fc" id="L9">    public Meal(final int price, final String name) {</span>
+<span class="fc" id="L10">        this.price = price;</span>
+<span class="fc" id="L11">        this.name = name;</span>
+<span class="fc" id="L12">    }</span>
+
+<span class="fc" id="L14">    public Meal(final int price, final int quantity, final String name) {</span>
+<span class="fc" id="L15">        this.price = price;</span>
+<span class="fc" id="L16">        this.quantity = quantity;</span>
+<span class="fc" id="L17">        this.name = name;</span>
+<span class="fc" id="L18">    }</span>
+
+<span class="fc" id="L20">    public Meal(final int price) {</span>
+<span class="fc" id="L21">        this.price = price;</span>
+<span class="fc" id="L22">    }</span>
+
+    public int getDiscountedPrice(int discount) {
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (discount &gt; price) {</span>
+<span class="fc" id="L26">            throw new IllegalArgumentException(&quot;Discount cannot be higher than the price!&quot;);</span>
+        }
+<span class="fc" id="L28">        return this.price - discount;</span>
+    }
+
+    public int getPrice() {
+<span class="fc" id="L32">        return price;</span>
+    }
+
+    public String getName() {
+<span class="fc" id="L36">        return name;</span>
+    }
+
+    public int getQuantity() {
+<span class="fc" id="L40">        return quantity;</span>
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (!(o instanceof Meal)) return false;</span>
+
+<span class="fc" id="L48">        Meal meal = (Meal) o;</span>
+
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (getPrice() != meal.getPrice()) return false;</span>
+<span class="pc bpc" id="L51" title="3 of 4 branches missed.">        return getName() != null ? getName().equals(meal.getName()) : meal.getName() == null;</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L56">        int result = getPrice();</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        result = 31 * result + (getName() != null ? getName().hashCode() : 0);</span>
+<span class="nc" id="L58">        return result;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L63">        return &quot;Meal{&quot; +</span>
+                &quot;price=&quot; + price +
+                &quot;, name='&quot; + name + '\'' +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
