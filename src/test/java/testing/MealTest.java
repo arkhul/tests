@@ -23,7 +23,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 
 class MealTest {
 
@@ -163,5 +165,23 @@ class MealTest {
 
     private int calculatePrice(int price, int quantity) {
         return price * quantity;
+    }
+
+    @Test
+    void testMealSumPriceWithSpy() {
+        // given
+        Meal meal = spy(Meal.class);
+
+        given(meal.getPrice()).willReturn(15);
+        given(meal.getQuantity()).willReturn(3);
+
+        // when
+        int result = meal.sumPrice();
+
+        // then
+        then(meal).should().getPrice();
+        then(meal).should().getQuantity();
+        assertEquals(45, result);
+//        assertThat(result, equalTo(45));
     }
 }
