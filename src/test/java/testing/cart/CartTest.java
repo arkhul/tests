@@ -2,8 +2,7 @@ package testing.cart;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import testing.Meal;
-import testing.cart.Cart;
+import testing.meal.Meal;
 import testing.order.Order;
 
 import java.time.Duration;
